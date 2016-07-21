@@ -43,7 +43,7 @@ public class Player {
 		this.weight = weight;
 	}
 	//this will be used to calculate their scorein the priority queue.
-	public int calculateRanking(){
+	public static int calculateRanking(){
 		Random rand= new Random();
 		int random_number= (int) rand.nextInt((99-50)+1);
 		return random_number;
@@ -51,14 +51,59 @@ public class Player {
 	public int getRanking() {
 		return ranking;
 	}
-	public void setRanking() {
-		this.ranking = calculateRanking();
+	public void setRanking(int ranking) {
+		this.ranking =ranking;
+	}
+	//This function will be used to generate a player with random info
+	public static Player randomizePlayers()
+	{
+		Player a_player= new Player();
+		a_player.setRanking(calculateRanking());
+		return a_player;
+	}
+	public static void promptInfo(int height, int weight,String name)
+	{
+		
 	}
 	
+	//---------MAIN------------
 	public static void main(String[] args) 
 	{
-		//Set info
-		System.out.println("This is a Sample Program that will \n Randomly Generate Queue of 15 NBA Players\n"); 
+		//Header Info
+		System.out.println("This is a Sample Program that will \nRandomly Generate Queue of 15 NBA Players\n"); 
+		System.out.println("Created by Stephen Chan");
+		System.out.println("Press 1 to Randomize Players or press 2 to Enter Players manually (Max of 16): ");
 		
+		
+		//Allocates memory for 16 players
+		Player[] collection= new Player[15];
+		
+		//Begin prompting User to make a choice
+		//Creates a scanner object to read input;
+		@SuppressWarnings("resource")
+		Scanner user_input=new Scanner(System.in);
+		int input;
+		input=user_input.nextInt();
+		if (input==1){
+			while (total_players<16){
+				collection[total_players]=randomizePlayers();
+			}
+			System.out.println("Successfully Created 16 players");
+		}
+		else if (input==2){
+			while (total_players<16){
+				Player a_player= new Player(); 
+				//User Input Scanner
+				Scanner info=new Scanner(System.in);
+				int height;
+				int weight;
+				
+				System.out.println("Enter Height:");
+				height=info.nextInt();
+				
+				
+			}
+		}
+	
 	}
 }
