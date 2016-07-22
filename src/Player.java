@@ -1,3 +1,4 @@
+//Built by Stephen Chan
 
 import java.util.*;
 import java.util.Random;
@@ -6,7 +7,6 @@ public class Player {
 	private String name;
 	private int height;
 	private int weight;
-	//Out of 10
 	private int ranking;
 	
 	protected static int total_players;
@@ -42,7 +42,7 @@ public class Player {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	//this will be used to calculate their scorein the priority queue.
+	//this will be used to calculate their score in the priority queue.
 	public static int calculateRanking(){
 		Random rand= new Random();
 		int random_number= (int) rand.nextInt((99-50)+1);
@@ -54,6 +54,7 @@ public class Player {
 	public void setRanking(int ranking) {
 		this.ranking =ranking;
 	}
+	
 	//This function will be used to generate a player with random info
 	public static Player randomizePlayers()
 	{
@@ -61,8 +62,61 @@ public class Player {
 		a_player.setRanking(calculateRanking());
 		return a_player;
 	}
-	public static void promptInfo(int height, int weight,String name)
+	public static Player manualPlayerEntry()
 	{
+		//Variables
+		Scanner info=new Scanner(System.in);
+		String name;
+		int choice;
+		int height;
+		int weight;
+		int ranking;
+		
+		//Prompts
+		System.out.println("Enter 1 for Regular, 2 for International, 3 for HighSchool: ");
+		choice=info.nextInt();
+		System.out.println("Enter Name:");
+		name=info.nextLine();
+		System.out.println("Enter Height:");
+		height=info.nextInt();
+		System.out.println("Enter Weight:");
+		weight=info.nextInt();
+		System.out.println("Enter Ranking (50-100):");
+		ranking=info.nextInt();
+		
+		if (choice==1){
+			collegePlayer a_player= new collegePlayer();
+			System.out.println("Enter College:");
+			String college=info.nextLine();
+			a_player.setName(name);
+			a_player.setHeight(height);
+			a_player.setWeight(weight);
+			a_player.setRanking(ranking);
+			a_player.setCollege(college);
+			return a_player;
+		}
+		else if (choice==2){
+			internationalPlayer a_player= new internationalPlayer();
+			System.out.println("Enter Club Team:");
+			String club=info.nextLine();
+			a_player.setName(name);
+			a_player.setHeight(height);
+			a_player.setWeight(weight);
+			a_player.setRanking(ranking);
+			a_player.setClub_team(club);
+			return a_player;
+		}
+		else if (choice==3){
+			highschoolPlayer a_player= new highschoolPlayer();
+			System.out.println("Enter high school:");
+			String high_school=info.nextLine();
+			a_player.setName(name);
+			a_player.setHeight(height);
+			a_player.setWeight(weight);
+			a_player.setRanking(ranking);
+			a_player.setHighschool(high_school);
+			return a_player;
+		}
 		
 	}
 	
@@ -92,15 +146,10 @@ public class Player {
 		}
 		else if (input==2){
 			while (total_players<16){
-				Player a_player= new Player(); 
-				//User Input Scanner
-				Scanner info=new Scanner(System.in);
-				int height;
-				int weight;
+			 
 				
-				System.out.println("Enter Height:");
-				height=info.nextInt();
 				
+				collection[total_players]=
 				
 			}
 		}
