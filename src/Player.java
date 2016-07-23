@@ -9,18 +9,16 @@ public class Player {
 	private int weight;
 	private int ranking;
 	
-	protected static int total_players;
+	protected static int total_players=0;
 	//Constructor
 	public Player(){
 		if (total_players<16)
 		{
 			total_players++;
-			System.out.println("Player Created\n");
 		}
 		else
 		{
 			System.out.println("Max Player limit reached <15\n");
-
 		}
 	}
 	//Getters and Setters
@@ -52,7 +50,7 @@ public class Player {
 		return ranking;
 	}
 	public void setRanking(int ranking) {
-		this.ranking =ranking;
+		this.ranking=ranking;
 	}
 	
 	//This function will be used to generate a player with random info
@@ -62,63 +60,7 @@ public class Player {
 		a_player.setRanking(calculateRanking());
 		return a_player;
 	}
-	public static Player manualPlayerEntry()
-	{
-		//Variables
-		Scanner info=new Scanner(System.in);
-		String name;
-		int choice;
-		int height;
-		int weight;
-		int ranking;
-		
-		//Prompts
-		System.out.println("Enter 1 for Regular, 2 for International, 3 for HighSchool: ");
-		choice=info.nextInt();
-		System.out.println("Enter Name:");
-		name=info.nextLine();
-		System.out.println("Enter Height:");
-		height=info.nextInt();
-		System.out.println("Enter Weight:");
-		weight=info.nextInt();
-		System.out.println("Enter Ranking (50-100):");
-		ranking=info.nextInt();
-		
-		if (choice==1){
-			collegePlayer a_player= new collegePlayer();
-			System.out.println("Enter College:");
-			String college=info.nextLine();
-			a_player.setName(name);
-			a_player.setHeight(height);
-			a_player.setWeight(weight);
-			a_player.setRanking(ranking);
-			a_player.setCollege(college);
-			return a_player;
-		}
-		else if (choice==2){
-			internationalPlayer a_player= new internationalPlayer();
-			System.out.println("Enter Club Team:");
-			String club=info.nextLine();
-			a_player.setName(name);
-			a_player.setHeight(height);
-			a_player.setWeight(weight);
-			a_player.setRanking(ranking);
-			a_player.setClub_team(club);
-			return a_player;
-		}
-		else if (choice==3){
-			highschoolPlayer a_player= new highschoolPlayer();
-			System.out.println("Enter high school:");
-			String high_school=info.nextLine();
-			a_player.setName(name);
-			a_player.setHeight(height);
-			a_player.setWeight(weight);
-			a_player.setRanking(ranking);
-			a_player.setHighschool(high_school);
-			return a_player;
-		}
-		
-	}
+	
 	
 	//---------MAIN------------
 	public static void main(String[] args) 
@@ -130,7 +72,7 @@ public class Player {
 		
 		
 		//Allocates memory for 16 players
-		Player[] collection= new Player[15];
+		Object[] collection= new Object[16];
 		
 		//Begin prompting User to make a choice
 		//Creates a scanner object to read input;
@@ -138,21 +80,27 @@ public class Player {
 		Scanner user_input=new Scanner(System.in);
 		int input;
 		input=user_input.nextInt();
-		if (input==1){
-			while (total_players<16){
-				collection[total_players]=randomizePlayers();
+		if (input==1)
+		{
+			for (int i=0;i<16;i++){
+				collection[i]=randomizePlayers();
 			}
 			System.out.println("Successfully Created 16 players");
 		}
-		else if (input==2){
+		else if (input==2)
+		{
 			while (total_players<16){
-			 
-				
-				
-				collection[total_players]=
-				
+				int choice;
+				Scanner info= new Scanner(System.in);
+				System.out.println("Enter 1 for College, 2 for International, 3 for HighSchool: ");
+				choice=info.nextInt();
+				if (choice==1){
+					collegePlayer a_player= new collegePlayer();
+					a_player.manualCollege();
+					collection[total_players]=a_player;
+				}
 			}
 		}
-	
 	}
 }
+
